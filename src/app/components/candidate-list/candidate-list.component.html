@@ -1,0 +1,7 @@
+<p>Nominate Candidates for Election</p>
+<ul>
+  <li *ngFor="let member of this.candidateService.candidates">
+    {{member.name}} - {{candidateService.getYearsSinceJoining(member.id)}} years membership - {{member.serviceHours}} service hours
+    {{member.membershipType}}
+  </li>
+</ul>

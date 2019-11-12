@@ -1,0 +1,9 @@
+io\catalyte\training\elections\models\MemberUI$Type.class
+io\catalyte\training\elections\ElectionsApplication.class
+io\catalyte\training\elections\services\MemberService.class
+io\catalyte\training\elections\services\MemberServiceImpl.class
+io\catalyte\training\elections\models\Member.class
+io\catalyte\training\elections\repositories\MemberRepository.class
+io\catalyte\training\elections\models\Member$Type.class
+io\catalyte\training\elections\controllers\MemberController.class
+io\catalyte\training\elections\models\MemberUI.class
