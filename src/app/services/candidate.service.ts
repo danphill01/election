@@ -9,6 +9,7 @@ export interface Member {
   name: string;
   joinDate: Date;
   membershipType: string;
+  isNominated?: boolean;
 }
 
 @Injectable({

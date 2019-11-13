@@ -1,7 +1,22 @@
-<p>Nominate Candidates for Election</p>
-<ul>
-  <li *ngFor="let member of this.candidateService.candidates">
-    {{member.name}} - {{candidateService.getYearsSinceJoining(member.id)}} years membership - {{member.serviceHours}} service hours
-    {{member.membershipType}}
-  </li>
-</ul>
+<h1>Nominate Candidates for Election</h1>
+
+<div class="container">
+  <div *ngFor="let member of this.candidateService.candidates" class="d-flex flex-row border border-primary">
+    <div class="btn-group btn-group-toggle">
+      <label class="btn-outline-primary" ngbButtonLabel>
+        <input type="checkbox" ngbButton
+          [(ngModel)]="member.isNominated">{{member.isNominated ? 'Remove Nomination' : 'Nominate'}}
+      </label>
+    </div>
+    <div class="align-self-center ml-1">
+      <span class="badge badge-success">{{member.isNominated ? 'Nominated' : null}}</span>
+      {{member.name}} - {{candidateService.getYearsSinceJoining(member.id)}} years membership - {{member.serviceHours}}
+      service hours
+      {{member.membershipType}}
+    </div>
+  </div>
+  <label class="btn-primary" ngbButtonLabel>
+    <button type="button" class="btn btn-primary" (click)="generateBallot">Generate
+      Ballot</button>
+  </label>
+</div>
