@@ -1,5 +1,17 @@
 # Elections
 
+## Allows the honor society president to conduct elections of exceptional members through group leaders.
+
+President has set up database with members data including name, membership type (regular, exceptional or group leader), service hours and join date. 
+
+Group leaders can access the web user interface and see the list of eligable members (must have at least 100 hours of community service, and be a member for at least 2 years). The group leader nominates the members that they want to be in the candidates in the election by clicking on the `Nominate` button next to the member's name. 
+
+Once the members are nominated, the group leader may click the `Generate Ballot` button to see a ballot that can be printed for each voting member. 
+
+Once the election is complete, the vote can be tallied from the `/tally` page. The group leader enters the number of voters and can then see a list of the candidates with a tally of their votes. The vote tally starts at zero and the button with the member's name can be clicked to increase the tally by one vote. If the number of votes for a candidate increases to at least 50% of the voter count, the candidate is elected and becomes an exceptional member.
+
+Stack: Angular frontend with Java/Spring backend; postgres db (10.10 from docker container).
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
 
 ## Development server
