@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 
 public interface MemberService {
   List<Member> getCandidates();
-
+  Long getMemberCount();
   void addMember(MemberUI newMember);
 }

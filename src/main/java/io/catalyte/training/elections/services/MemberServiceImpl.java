@@ -23,6 +23,11 @@ public class MemberServiceImpl implements MemberService {
   }
 
   @Override
+  public Long getMemberCount() {
+    return memberRepository.count();
+  }
+
+  @Override
   public void addMember(MemberUI newMember) {
     Member member = new Member(newMember.getName(), newMember.getJoinDate());
     memberRepository.save(member);

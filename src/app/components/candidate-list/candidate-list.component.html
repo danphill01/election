@@ -15,8 +15,7 @@
       {{member.membershipType}}
     </div>
   </div>
-  <label class="btn-primary" ngbButtonLabel>
-    <button type="button" class="btn btn-primary" (click)="generateBallot">Generate
-      Ballot</button>
-  </label>
+  <button type="button" class="btn btn-secondary" (click)="this.candidateService.selectAllCandidates()">Select All Candidates</button>
+  <button type="button" class="btn btn-primary" routerLink="/ballot">Generate Ballot</button>
+  <button type="button" class="btn btn-primary" routerLink="/tally">Tally Votes</button>
 </div>

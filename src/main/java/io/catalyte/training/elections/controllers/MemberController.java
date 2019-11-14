@@ -20,8 +20,13 @@ public class MemberController {
   MemberService memberService;
 
   @GetMapping("/candidates")
-  public List<Member> getMemberList() {
+  public List<Member> getCandidateList() {
     return memberService.getCandidates();
+  }
+
+  @GetMapping("/members/count")
+  public Long getMemberCount() {
+    return memberService.getMemberCount();
   }
 
   @PostMapping("/members")
