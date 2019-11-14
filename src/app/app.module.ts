@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { CandidateListComponent } from './components/candidate-list/candidate-list.component';
 import { BallotComponent } from './components/ballot/ballot.component';
 import { TallyComponent } from './components/tally/tally.component';
+import { ResultsComponent } from './components/results/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CandidateListComponent,
     BallotComponent,
-    TallyComponent
+    TallyComponent,
+    ResultsComponent
   ],
   imports: [
     NgbModule,

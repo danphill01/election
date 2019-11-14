@@ -1,0 +1,22 @@
+<p>Group Election Results</p>
+<div *ngIf="this.candidateService.areCandidatesNominated() && this.candidateService.count; else noCandidates">
+  Members voting: {{this.candidateService.count}}<br>
+  <div *ngIf="this.candidateService.areCandidatesElected()">
+    <ng-container *ngFor="let candidate of this.candidateService.getCandidates()">
+      <span *ngIf="candidate.isElected">
+        {{candidate.name}} - {{candidate.votes}} votes.<br>
+      </span>
+    </ng-container>
+  </div>
+  <div *ngIf="!this.candidateService.areCandidatesElected()">
+    No exceptional members elected.
+  </div>
+</div>
+<ng-template #noCandidates>
+  <div>
+    <p>You must select at least one candidate and tally votes to view results. Please go back to the candidate selection screen.</p>
+    <label class="btn-primary" ngbButtonLabel>
+      <button type="button" class="btn btn-primary" routerLink="/">Go Back</button>
+    </label>
+  </div>
+</ng-template>

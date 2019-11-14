@@ -1,18 +1,21 @@
 <div class="container">
   <h5>Tally Votes from Election</h5>
-  <label>
-    Number of voters ({{this.numMembers}}):
-    <input type="number" [formControl]="voters">
-  </label>
   <div *ngIf="this.candidateService.areCandidatesNominated(); else noCandidates">
-    <div>
+    <label>
+      Number of voters ({{this.numMembers}}):
+      <input type="number" [formControl]="voters">
+    </label>
+    <div *ngIf="voters.value">
       <ng-container *ngFor="let member of this.candidateService.candidates">
-        <div *ngIf="member.isNominated && voters.value">
-          <button type="button" class="btn btn-primary btn-small mb-2" (click)="this.candidateService.increaseTally(member.id)">{{member.name}}</button>
+        <div *ngIf="member.isNominated">
+          <button type="button" class="btn btn-secondary btn-small mb-2" (click)="this.candidateService.increaseTally(member.id)">{{member.name}}</button>
           <span class="ml-2">{{member.votes || 0}} Votes</span>
-          <span class="badge badge-success ml-2">{{member.votes >= 0.5 * voters.value ? 'Elected' : null}}</span>
+          <span class="badge badge-success ml-2">{{member.votes >= 0.5 * voters.value ? 'Predicted to be Elected' : null}}</span>
         </div>
       </ng-container>
+      <a [routerLink]="['/results']">
+        <button type="button" class="btn btn-primary" (click)="this.candidateService.setMemberCount(this.voters.value)">View Results</button>
+      </a>
     </div>
   </div>
   <ng-template #noCandidates>

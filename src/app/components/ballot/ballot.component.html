@@ -1,23 +1,22 @@
-<div class="container">
-  <h5>Ballot for Election</h5>
-  <div *ngIf="this.candidateService.areCandidatesNominated(); else noCandidates">
-    <p>The following members have met the requirements to be an exceptional member and have been nominated by your group
-      leader.</p>
-    <p>Vote for as many candidates as you like by marking the box next to the candidate's name</p>
-    <div>
-      <ng-container *ngFor="let member of this.candidateService.candidates">
-        <div *ngIf="member.isNominated" class="m-2">
-          <span>☐ {{member.name}}</span>
-        </div>
-      </ng-container>
-    </div>
+<h5>Ballot for Election</h5>
+<div *ngIf="this.candidateService.areCandidatesNominated(); else noCandidates">
+  <p>The following members have met the requirements to be an exceptional member and have been nominated by your group
+    leader.</p>
+  <p>Vote for as many candidates as you like by marking the box next to the candidate's name</p>
+  <div>
+    <ng-container *ngFor="let member of this.candidateService.candidates">
+      <div *ngIf="member.isNominated" class="m-2">
+        <span>☐ {{member.name}}</span>
+      </div>
+    </ng-container>
   </div>
-  <ng-template #noCandidates>
-    <div>
-      <p>You must select at least one candidate to generate a ballot. Please go back to the candidate selection screen.</p>
-      <label class="btn-primary" ngbButtonLabel>
-        <button type="button" class="btn btn-primary" routerLink="/">Go Back</button>
-      </label>
-    </div>
-  </ng-template>
 </div>
+<ng-template #noCandidates>
+  <div>
+    <p>You must select at least one candidate to generate a ballot. Please go back to the candidate selection screen.
+    </p>
+    <label class="btn-primary" ngbButtonLabel>
+      <button type="button" class="btn btn-primary" routerLink="/">Go Back</button>
+    </label>
+  </div>
+</ng-template>

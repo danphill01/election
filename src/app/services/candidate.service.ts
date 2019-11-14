@@ -11,6 +11,7 @@ export interface Member {
   membershipType: string;
   isNominated?: boolean;
   votes?: number;
+  isElected?: boolean;
 }
 
 @Injectable({
@@ -19,18 +20,32 @@ export interface Member {
 export class CandidateService {
   static readonly url: string = `${environment.apiUrl}/candidates`;
   candidates: Member[] = [];
-  count: number;
+  count = 0;
+  isNewExceptionalMembers = false;
 
   constructor(private httpClient: HttpClient) {
-    this.getCandidates().subscribe(members => this.candidates = members);
+    this.getCandidatesFromServer().subscribe(members => this.candidates = members);
   }
 
-  getCandidates(): Observable<[Member]> {
+  getCandidatesFromServer(): Observable<[Member]> {
     return this.httpClient.get(CandidateService.url) as Observable<[Member]>;
+  }
+
+  getCandidates(): Member[] {
+    return this.candidates;
   }
 
   getMemberCount(): Observable<number> {
     return this.httpClient.get(`${environment.apiUrl}/members/count`) as Observable<number>;
+  }
+
+  setMemberCount(count: number) {
+    this.count = count;
+    this.isNewExceptionalMembers = false;
+    this.candidates.forEach(m => {
+      m.isElected = m.votes >= 0.5 * count;
+      this.isNewExceptionalMembers = this.isNewExceptionalMembers || m.isElected;
+    });
   }
 
   getYearsSinceJoining(memberId: number) {
@@ -40,6 +55,10 @@ export class CandidateService {
 
   areCandidatesNominated() {
     return this.candidates.findIndex(m => m.isNominated === true) !== -1;
+  }
+
+  areCandidatesElected() {
+    return this.isNewExceptionalMembers === true;
   }
 
   selectAllCandidates() {
